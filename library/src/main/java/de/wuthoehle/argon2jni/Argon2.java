@@ -45,7 +45,7 @@ public class Argon2 {
      * @see #argon2jni_hash(int t_cost, int m_cost, int parallelism, byte[], byte[], int, int, int, int)
      */
     public static final class SecurityParameterTemplates {
-        public static final SecurityParameters OFFICIAL_DEFAULT = new SecurityParameters(3, 1 << 12, 1);
+        public static final SecurityParameters OFFICIAL_DEFAULT = new SecurityParameters();
     }
 
     public static final int DefaultTypeIdentifier = TypeIdentifiers.ARGON2I;
@@ -70,6 +70,25 @@ public class Argon2 {
         this.hashlen = DefaultHashlen;
         this.typeid = DefaultTypeIdentifier;
         this.versionid = DefaultVersionIdentifier;
+    }
+
+    /**
+     * Construct a class using custom security parameters
+     * @param securityParameters SecurityParameters (t_cost, m_cost, parallelism) to use
+     * @see SecurityParameters
+     */
+    public Argon2(SecurityParameters securityParameters) {
+        this(securityParameters, DefaultHashlen, DefaultTypeIdentifier, DefaultVersionIdentifier);
+    }
+
+    /**
+     * Construct a class using custom security parameters and custom hash length
+     * @param securityParameters SecurityParameters (t_cost, m_cost, parallelism) to use
+     * @param hashlen Desired hash output length in bytes
+     * @see SecurityParameters
+     */
+    public Argon2(SecurityParameters securityParameters, int hashlen) {
+        this(securityParameters, hashlen, DefaultTypeIdentifier, DefaultVersionIdentifier);
     }
 
     /**
