@@ -5,7 +5,7 @@ option(CLANG_SANITIZE "Use Clang sanitizer (address, undefined)" OFF)
 
 find_package(JNI)
 
-include_directories(src/main/c/phc-winner-argon2/include)
+include_directories(${PROJECT_SOURCE_DIR}/src/main/c/phc-winner-argon2/include)
 
 if((${CMAKE_SYSTEM_NAME} STREQUAL "Linux") OR (${CMAKE_SYSTEM_NAME} STREQUAL "Android"))
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC -fvisibility=hidden")
@@ -23,8 +23,7 @@ set(ARGON2_FILES
         src/main/c/phc-winner-argon2/src/encoding.c
         src/main/c/phc-winner-argon2/src/ref.c)
 
-set(SOURCE_FILES
-        src/main/c/argon2jni.c)
+set(SOURCE_FILES src/main/c/argon2jni.c)
 
 add_library(argon2jni
         SHARED
